@@ -3,10 +3,18 @@ package com.javacodes.british_time_sb.service;
 import com.javacodes.british_time_sb.constant.Constants;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalTime;
 
 @Service
 public class BritishTimeAfterThirtyMinuteImpl implements BritishTimeService{
+
+    /**
+     * Method to create the british spoken time format, if the input time minutes are more than thirty.
+     * The appending key word is 'to' here.
+     * A small rage of time (31m - 34m) is directly getting called
+     * @param hr
+     * @param minute
+     * @return
+     */
     @Override
     public String generateBritishSpokenTime(int hr, int minute) {
         StringBuilder time = new StringBuilder();

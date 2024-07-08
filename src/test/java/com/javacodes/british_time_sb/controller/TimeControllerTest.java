@@ -25,6 +25,10 @@ class TimeControllerTest {
         LocalTime time = LocalTime.now();
         timeController.getBritishTime(time);
     }
+
+    /**
+     * Test for the invalid input to the Api
+     */
     @Test
     void getBritishTimeInvalid() {
         assertEquals(new ResponseEntity<>("Invalid Time..", HttpStatus.INTERNAL_SERVER_ERROR),timeController.getBritishTime(null));

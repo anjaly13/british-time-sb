@@ -44,4 +44,8 @@ public class Constants {
         TIME.put(33, "thirty three");
         TIME.put(34, "thirty four");
     }
+
+    public static final String NOON = "noon";
+    public static final String MID_NIGHT = "midnight";
+    public static final String OCLOCK = "o'clock";
 }

@@ -21,6 +21,10 @@ public class TimeServiceImpl implements TimeService{
     @Autowired
     private BritishTimeAfterThirtyMinuteImpl britishTimeAfterThirtyMinute;
 
+    /**
+     * Create a navigatable map to collect the required instance details, for different time ranges
+     * design - factory
+     */
     public static final NavigableMap<Integer,BritishTimeService> serviceHandler = new TreeMap<>();
     @PostConstruct
     public Map<Integer, BritishTimeService> getObject() {
@@ -30,6 +34,12 @@ public class TimeServiceImpl implements TimeService{
         return serviceHandler;
     }
 
+    /**
+     * Method to make call to the exact instance for each time range
+     * @param time
+     * @return
+     * @throws Exception
+     */
     @Override
     public String getBritishSpokenTime(LocalTime time) throws Exception {
         int hr = time.getHour();

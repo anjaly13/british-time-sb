@@ -33,6 +33,11 @@ class TimeServiceImplTest {
     @Mock
     private BritishTimeService britishTimeService;
 
+    /**
+     * Tests for each time ranges as input
+     *
+     * @throws Exception
+     */
     @Test
     public void testBeforeThirtyMinutes() throws Exception {
         LocalTime localTime = LocalTime.of(4,15);
