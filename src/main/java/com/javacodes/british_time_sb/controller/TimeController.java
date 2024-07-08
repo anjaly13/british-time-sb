@@ -1,12 +1,11 @@
 package com.javacodes.british_time_sb.controller;
 
+import com.javacodes.british_time_sb.service.TimeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalTime;
 
@@ -14,9 +13,26 @@ import java.time.LocalTime;
 @RequestMapping("/time")
 public class TimeController {
 
+    @Autowired
+    private TimeService timeService;
+
+    /**
+     * Entry point to the Spring boot api
+     * 
+     * @param localTime
+     * @return
+     */
     @GetMapping("/british-time")
-    public ResponseEntity getBritishTime(@RequestParam("time") @DateTimeFormat(pattern = "HH:mm") LocalTime localTime){
-        System.out.println("Write the logic for getting british spoken time of " + localTime);
-        return new ResponseEntity(HttpStatus.OK);
+    public ResponseEntity getBritishTime(@RequestParam("time") @DateTimeFormat(pattern = "hh:mm") LocalTime localTime){
+        try{
+            if(localTime == null || (localTime.getHour() > 12)){
+                throw new Exception("Invalid Time..");
+            }
+            return new ResponseEntity(timeService.getBritishSpokenTime(localTime),HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
+
 }
