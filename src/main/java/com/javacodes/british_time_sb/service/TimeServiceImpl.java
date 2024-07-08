@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
@@ -24,7 +23,7 @@ public class TimeServiceImpl implements TimeService{
 
     public static final NavigableMap<Integer,BritishTimeService> serviceHandler = new TreeMap<>();
     @PostConstruct
-    private Map<Integer, BritishTimeService> getObject() {
+    public Map<Integer, BritishTimeService> getObject() {
         serviceHandler.put(0,britishTimeSpecial);
         serviceHandler.put(30,britishTimeBeforeThirtyMinute);
         serviceHandler.put(59,britishTimeAfterThirtyMinute);
